@@ -1,9 +1,11 @@
 # Messiaro
 Social Media Application
 
-Key Functionalities : 
-1.Login or Register
-2.Post with images and description
-3.Follow unfollow user
-4.Like and dislike posts
-5.Update display and cover picture of users
+<i><b>Key Functionalities</b></i><br/><br/>
+<ol>
+  <li>Login or Register</li>
+  <li>Post with images and description</li>
+  <li>Follow unfollow user</li>
+  <li>Like and dislike posts</li>
+  <li>Update display and cover picture of users</li>
+</ol>
