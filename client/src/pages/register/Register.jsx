@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useRef } from 'react'
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import './Register.css';
 function Register() {
     const email = useRef();
@@ -8,6 +9,7 @@ function Register() {
     const username = useRef();
     const passwordAgain = useRef();
     const history = useHistory();
+    // console.log(history);
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (passwordAgain.current.value !== password.current.value) {
@@ -22,8 +24,8 @@ function Register() {
                 await axios.post('http://localhost:5000/api/auth/register',user);
                 history.push("/login")
             } catch (e) {
-                
-           }
+                console.log(e);
+            }
         }
     }
     return (
@@ -41,11 +43,13 @@ function Register() {
                     <div className="registerBox">
                         <input placeholder="Email.." required ref={email} className="loginInput" type="email"/>
                         <input placeholder="Username.." ref={username} required className="loginInput"/>
-                        <input placeholder="Password.." minLength="6" type="password" required ref={password} className="loginInput" type="password"/>
+                        <input placeholder="Password.." type="password" required ref={password} className="loginInput" />
                         <input placeholder="Confirm password.." type="password" required ref={passwordAgain}  className="loginInput" type="password"/>
                         <button className="loginButton" type="submit">Sign Up</button>
                         <button className="loginRegister">
-                            Log In To Account
+                            <Link to={`/login`} style={{textDecoration: 'none',color:'inherit'}}>
+                                 Log In To Account
+                            </Link>
                         </button>
                     </div>
                 </form>

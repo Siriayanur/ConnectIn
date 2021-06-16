@@ -4,7 +4,11 @@ import Share from '../share/Share';
 import './Feed.css';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
-
+/**
+ * 
+ * username is passed to the Feed component only when the profile page is clicked.
+ *  Else Feed will contain all user's followings[] post
+ */
 function Feed({username}) {
     const [posts, setPosts] = useState([]);
     const { user } = useContext(AuthContext);
@@ -14,8 +18,8 @@ function Feed({username}) {
                 //
                 const response = username
                     ? await axios.get(`http://localhost:5000/api/posts/profile/${username}`)
-                    : await axios.get('http://localhost:5000/api/posts/timeline/'+user._id)
-                console.log(response);
+                    : await axios.get('http://localhost:5000/api/posts/timeline/'+ user._id)
+                // console.log(response);
                 //To sort the posts based on order of creation
                 setPosts(response.data.sort((p1, p2) =>
                 {

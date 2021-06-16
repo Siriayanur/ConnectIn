@@ -1,0 +1,23 @@
+.conversation{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    margin-top:10px ;
+}
+.conversation:hover{
+    background-color: rgb(242, 244, 255);
+}
+.conversationImage{
+    height: 32px;
+    width: 32px;    
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+
+}
+
+.conversationChatFrom{
+    font-weight: 500;
+    font-size: 14px;
+}

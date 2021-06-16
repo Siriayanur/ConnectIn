@@ -7,7 +7,9 @@ const helmet = require('helmet');
 const cors = require('cors')
 const userRoute = require('./routes/user.js')
 const authRoute = require('./routes/auth.js')
-const postRoute = require('./routes/post.js');
+const postRoute = require('./routes/post.js')
+const messagesRoute = require('./routes/messages.js')
+const conversationRoute = require('./routes/conversation.js');
 const multer = require('multer');
 const path = require('path');
 dotenv.config();
@@ -62,6 +64,8 @@ app.post('/api/upload', upload.single("file"), (req, res) =>
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
+app.use('/api/messages', messagesRoute);
+app.use('/api/conversation', conversationRoute);
 
 //Check result :)
 app.listen(5000, () => {

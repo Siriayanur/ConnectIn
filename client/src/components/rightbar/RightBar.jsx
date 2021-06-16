@@ -19,6 +19,8 @@ function RightBar({ user }) {
         try {
             const friendList = await axios.get("http://localhost:5000/api/users/friends/" + user._id);
             setFriends(friendList.data);
+            console.log(friendList.data);
+            console.log(user);
         } catch (err) {
             console.log(err);
         }
@@ -48,22 +50,6 @@ function RightBar({ user }) {
         setFollowed(!followed)
     }
 
-    useEffect(() =>
-    {
-        const getFriends = async () =>
-        {
-            try
-            {
-                const friendList = await axios.get('http://localhost:5000/api/users/friends/' + user._id)
-                setFriends(friendList.data);
-                console.log(friends);
-            } catch (e)
-            {
-                console.log(e)
-            }
-        }
-        getFriends();
-    }, [user]);
 
     const HomeRightBar = () => {
         return (
@@ -111,20 +97,19 @@ function RightBar({ user }) {
                 <h4 className="rightbarTitle">
                     My Friends
                 </h4>
-                <div className="rightbarFollowing">
-                    {/* {friends?.map((friend, i) => (
-                        <Link to={'/profile/' + friend.username} style={{ textDecoration: 'none' }} key={i}>
-                            <div className="rightbarFollowingItem">
-                                <img src={friend.profilePicture ? PF + friend.profilePicture : PF + 'noDp.png'} alt="" className="rightbarFollowingImage" />
-                                <span className="rightbarFollowingName">{friend.username}</span>
-                            </div>
-                        </Link>
+                {friends.length > 0 &&
+                    <div className="rightbarFollowing">
+                        {friends.map((friend, i) => (
+                            <Link to={'/profile/' + friend.username} style={{ textDecoration: 'none', color: 'inherit' }} key={i}>
+                                <div className="rightbarFollowingItem">
+                                    <img src={friend.profilePicture ? PF + friend.profilePicture : PF + 'noDp.png'} alt="" className="rightbarFollowingImage" />
+                                    <span className="rightbarFollowingName">{friend.username}</span>
+                                </div>
+                            </Link>
                         ))
-                    } */}
-                    
-                    
-
-                </div>
+                        }
+                    </div>
+                }
             </>
         );
     }

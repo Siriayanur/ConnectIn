@@ -1,18 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import {useParams} from 'react-router'
+import React, { useState, useEffect, useContext } from 'react';
+import  {useParams,useHistory} from 'react-router'
 import Appbar from '../../components/appbar/Appbar';
 import Feed from '../../components/feeds/Feed';
 import RightBar from '../../components/rightbar/RightBar';
 import Sidebar from '../../components/sidebar/Sidebar'
 import './Profile.css';
 import axios from 'axios';
+import { AuthContext } from '../../components/context/AuthContext';
+
+
 function Profile() {
     const [user,setUser] = useState({})
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const username = useParams().username;
+    const history = useHistory();
     //Will clog all the params that are defined for the particular route
     // {key_param : value_of_param_passed}
+    const {  dispatch } = useContext(AuthContext);
 
+    const handleClick = async () =>
+    {
+        dispatch({ type: 'LOGOUT' })
+        history.push('/login');
+    }
     useEffect(() => {
             const fetchUser = async () => {
                 try {
@@ -25,7 +35,6 @@ function Profile() {
             }
             fetchUser();
     }, [username])
-    
 
     return (
         <>
@@ -58,6 +67,8 @@ function Profile() {
                             </span>
                         </div>
                     </div>
+                    {user.username === username && <button onClick={handleClick}>Log Out</button>}
+
                     <div className="profileRightBottom">
                         <Feed username={username}/>
                         <RightBar user={user}/>
