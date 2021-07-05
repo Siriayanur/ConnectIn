@@ -1,4 +1,4 @@
-# Messiaro
+# ConnectIn
 Social Media Application
 
 <i><b>Key Functionalities</b></i><br/><br/>
